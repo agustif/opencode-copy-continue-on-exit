@@ -1,0 +1,19 @@
+{
+  "name": "opencode-copy-continue-on-exit",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "OpenCode TUI plugin: on exit, copy the continue-session CLI command to the clipboard",
+  "license": "MIT",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./tui": "./tui.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agustif/opencode-copy-continue-on-exit.git"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.0.30"
+  }
+}

@@ -13,6 +13,16 @@ function readSessionId(context: TuiContext): string | undefined {
   return undefined
 }
 
+function readSessionTitle(context: TuiContext, sessionID: string | undefined): string | undefined {
+  if (!sessionID) return undefined
+  try {
+    const session = context.data.session.get(sessionID) as any
+    const title = session?.title ?? session?.name
+    if (typeof title === "string" && title.trim()) return title.trim()
+  } catch {}
+  return undefined
+}
+
 function copyToClipboard(text: string): void {
   const candidates: string[][] = [
     ["pbcopy"],
@@ -35,15 +45,23 @@ export default Plugin.define({
   id: "copy-continue-on-exit",
   setup(context: TuiContext) {
     let sessionId = readSessionId(context)
+    let sessionTitle = readSessionTitle(context, sessionId)
 
     const timer = setInterval(() => {
       const id = readSessionId(context)
-      if (id) sessionId = id
+      if (id) {
+        sessionId = id
+        sessionTitle = readSessionTitle(context, id) ?? sessionTitle
+      }
     }, 500)
 
     const doCopy = () => {
-      const cmd = sessionId ? `opencode --session ${sessionId}` : `opencode --continue`
-      copyToClipboard(cmd)
+      if (sessionId) {
+        const title = sessionTitle ? ` # ${sessionTitle}` : ""
+        copyToClipboard(`opencode --session ${sessionId}${title}`)
+      } else {
+        copyToClipboard(`opencode --continue`)
+      }
     }
 
     process.on("exit", doCopy)

@@ -1,13 +1,25 @@
 # opencode-copy-continue-on-exit
 
-OpenCode v2 TUI plugin. When you exit OpenCode (via `/exit`, `/quit`, `/q`, or closing the app), it copies a continue-session CLI command to your clipboard.
+OpenCode v2 TUI plugin. When you exit OpenCode (via `/exit`, `/quit`, `/q`, or closing the terminal), it copies a continue-session CLI command to your clipboard.
 
-- In a session: `opencode --session <sessionID>`
+- In a session: `opencode --session <sessionID> # <session title>`
 - Otherwise: `opencode --continue`
 
 ## Install
 
-Add to `~/.config/opencode/opencode.json`:
+From npm (once published):
+
+```sh
+opencode plugin add opencode-copy-continue-on-exit
+```
+
+From GitHub:
+
+```sh
+opencode plugin add github:agustif/opencode-copy-continue-on-exit
+```
+
+Or add a local path to `~/.config/opencode/opencode.json`:
 
 ```json
 {
@@ -15,11 +27,7 @@ Add to `~/.config/opencode/opencode.json`:
 }
 ```
 
-Or install from GitHub:
-
-```sh
-opencode plugin add github:agustif/opencode-copy-continue-on-exit
-```
+Then fully restart OpenCode. Verify with `opencode2 plugin list`.
 
 ## Clipboard support
 

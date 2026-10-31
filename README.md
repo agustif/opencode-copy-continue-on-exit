@@ -23,7 +23,7 @@ Then fully restart OpenCode. Verify with `opencode2 plugin list`.
 
 ## Clipboard support
 
-Uses `pbcopy` (macOS), `wl-copy`, `xclip`, or `xsel` (Linux), with an OSC 52 fallback.
+Uses `pbcopy` (macOS), `wl-copy`/`xclip`/`xsel` (Linux), `clip` (Windows), with an OSC 52 fallback.
 
 ## License
 

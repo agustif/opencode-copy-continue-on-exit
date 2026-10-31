@@ -29,6 +29,8 @@ function copyToClipboard(text: string): void {
     ["wl-copy"],
     ["xclip", "-selection", "clipboard"],
     ["xsel", "--clipboard", "--input"],
+    ["clip"],
+    ["clip.exe"],
   ]
   for (const [bin, ...args] of candidates) {
     try {

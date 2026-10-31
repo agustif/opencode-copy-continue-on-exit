@@ -19,14 +19,6 @@ From GitHub:
 opencode plugin add github:agustif/opencode-copy-continue-on-exit
 ```
 
-Or add a local path to `~/.config/opencode/opencode.json`:
-
-```json
-{
-  "plugins": ["/path/to/opencode-copy-continue-on-exit"]
-}
-```
-
 Then fully restart OpenCode. Verify with `opencode2 plugin list`.
 
 ## Clipboard support

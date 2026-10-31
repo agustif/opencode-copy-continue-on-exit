@@ -64,12 +64,20 @@ export default Plugin.define({
       }
     }
 
+    const handleSignal = () => {
+      doCopy()
+      process.exit(0)
+    }
     process.on("exit", doCopy)
+    process.on("SIGTERM", handleSignal)
+    process.on("SIGHUP", handleSignal)
 
     return () => {
       clearInterval(timer)
       try {
         process.off("exit", doCopy)
+        process.off("SIGTERM", handleSignal)
+        process.off("SIGHUP", handleSignal)
       } catch {}
       doCopy()
     }
